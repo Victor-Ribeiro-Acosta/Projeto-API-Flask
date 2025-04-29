@@ -1,6 +1,7 @@
 # Instalar Flask-SQLAlchemy
 
 import click
+import os
 from flask import Flask, current_app
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -38,7 +39,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
       SECRET_KEY='dev',  # criar chave secreta
-      SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db', # criar banco de dados
+      SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL'], # criar banco de dados
       JWT_SECRET_KEY = 'super-secret'
   )
 #   -> app.instance_path cria um caminho até um diretorio
